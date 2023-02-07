@@ -1,6 +1,7 @@
 import Player from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
+const timePosition = 'videoplayer-current-time';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 
@@ -9,11 +10,11 @@ const onPlay = function(data) {
 };
 
 const setPosition = function(data) {
-    localStorage.setItem('videoplayer-current-time', data.seconds);
+    localStorage.setItem(timePosition, data.seconds);
 };
 
 const getPosition = function() {
-    return JSON.parse(localStorage.getItem('videoplayer-current-time'));
+    return localStorage.getItem(timePosition);
 };
 
 player.on('play', onPlay);
